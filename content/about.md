@@ -5,7 +5,7 @@ path = "about"
 
 ![Heiko Seeberger](/img/heiko-640.jpeg)
 
-I am Heiko Seeberger, and I have built distributed systems for more than 25 years: the last four in Rust, and fifteen before that in Scala.
+I am Heiko Seeberger, and I have been writing software professionally since 1994, for more than 30 years now. Since 2011 I have built distributed systems: for ten years with Scala and Akka, and since 2021 with Rust.
 
 In the Scala years I worked at Typesafe and Lightbend, mostly with Akka, and wrote the book *Durchstarten mit Scala*, published by entwickler.press. Later I worked at Kraken. In Rust, I led the development of the [Midnight Indexer](https://github.com/midnightntwrk/midnight-indexer) at Shielded Technologies. I wrote [eventsourced](https://github.com/hseeberger/eventsourced) and then [tellus](https://tellus.rs), an actor framework for Rust with supervision trees, event-sourced persistence and clustered remoting.
 

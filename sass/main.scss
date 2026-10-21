@@ -1,0 +1,41 @@
+@use "../tellus-site/sass/fonts";
+@use "../tellus-site/sass/tokens";
+@use "../tellus-site/sass/base";
+@use "../tellus-site/sass/header";
+@use "../tellus-site/sass/hero";
+@use "../tellus-site/sass/sections";
+@use "../tellus-site/sass/footer";
+@use "../tellus-site/sass/highlight";
+@use "../tellus-site/sass/docs";
+@use "../tellus-site/sass/articles";
+
+:root {
+  --accent: #2a5db0;
+  --accent-soft: #d6e1f3;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #7fa8ff;
+    --accent-soft: #1d2a44;
+  }
+}
+:root[data-theme="dark"] {
+  --accent: #7fa8ff;
+  --accent-soft: #1d2a44;
+}
+
+.hero { padding-bottom: clamp(48px, 7vw, 88px); border-bottom: 1px solid var(--rule); }
+.hero .wrap { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); align-items: center; }
+.portrait { width: min(100%, 320px); height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; justify-self: end; }
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); }
+  .portrait { width: 160px; justify-self: start; grid-row: 1; }
+}
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; padding: 0; list-style: none; }
+.tags a { font-family: var(--f-mono); font-size: var(--t-xs); text-decoration: none; border: 1px solid var(--rule); border-radius: 999px; padding: 1px 9px; }
+.tags a:hover { border-color: var(--accent); }
+.year { font-family: var(--f-display); font-size: var(--t-lg); margin-top: 40px; }
+.year + .articles { margin-top: 12px; }
+.note { color: var(--ink-2); margin-top: 32px; }
+.brand { white-space: nowrap; }

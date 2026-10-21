@@ -1,0 +1,33 @@
+base_url         = "https://heikoseeberger.de"
+title            = "Heiko Seeberger"
+description      = "Heiko Seeberger writes about actors, supervision and event sourcing in Rust."
+default_language = "en"
+author           = "Heiko Seeberger"
+
+compile_sass       = true
+minify_html        = true
+build_search_index = false
+generate_feeds     = true
+feed_filenames     = [ "atom.xml" ]
+
+taxonomies = [ { name = "tags" } ]
+
+[markdown]
+smart_punctuation = true
+
+[markdown.highlighting]
+error_on_missing_language = false
+style                     = "class"
+theme                     = "github-dark"
+
+[link_checker]
+internal_level = "error"
+external_level = "warn"
+
+[extra]
+github    = "https://github.com/hseeberger"
+linkedin  = "https://www.linkedin.com/in/heikoseeberger"
+tellus    = "https://tellus.rs"
+oxidize   = "https://oxidize.cy"
+wordpress = "https://hseeberger.wordpress.com/"
+plausible = "https://plausible.io/js/plausible.js"

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Tags: Heiko Seeberger{% endblock title %}
+
+{% block content %}
+<div class="wrap doc-single">
+  <h1>Tags</h1>
+  <ul class="doc-list">
+    {%- for term in terms %}
+    <li><a href="{{ term.permalink | safe }}"><b>{{ term.name }}</b><span>{{ term.pages | length }} posts</span></a></li>
+    {%- endfor %}
+  </ul>
+</div>
+{% endblock content %}

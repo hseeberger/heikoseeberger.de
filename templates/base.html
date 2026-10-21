@@ -1,0 +1,79 @@
+{%- if page is defined -%}
+  {%- set meta_title = page.title ~ ": Heiko Seeberger" -%}
+  {%- set meta_description = page.description | default(value=config.description) -%}
+{%- elif section is defined and section.path != "/" -%}
+  {%- set meta_title = section.title ~ ": Heiko Seeberger" -%}
+  {%- set meta_description = section.description | default(value=config.description) -%}
+{%- else -%}
+  {%- set meta_title = config.title -%}
+  {%- set meta_description = config.description -%}
+{%- endif -%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}{{ meta_title }}{% endblock title %}</title>
+  <meta name="description" content="{{ meta_description }}">
+  {% if current_url is defined %}
+  <link rel="canonical" href="{{ current_url }}">
+  {% endif %}
+  <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml', trailing_slash=false) }}">
+  <link rel="icon" href="{{ get_url(path='images/favicon.ico') }}">
+  <link rel="apple-touch-icon" href="{{ get_url(path='images/apple-touch-icon.png') }}">
+  <link rel="preload" href="{{ get_url(path='fonts/bricolage-grotesque.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ get_url(path='fonts/atkinson-hyperlegible-400-normal.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="{{ get_url(path='main.css', cachebust=true) }}">
+  <link rel="stylesheet" href="{{ get_url(path='giallo.css') }}">
+  <script>try { const t = localStorage.getItem('hs-theme'); if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  {% if config.mode == "build" %}
+  <script async defer data-domain="heikoseeberger.de" src="{{ config.extra.plausible }}"></script>
+  {% endif %}
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="{{ get_url(path='@/_index.md') }}">Heiko Seeberger</a>
+    <nav class="nav" aria-label="Main">
+      <a href="{{ get_url(path='@/archives/_index.md') }}">Writing</a>
+      <a class="opt" href="{{ get_url(path='@/_index.md') }}#projects">Projects</a>
+      <a class="opt" href="{{ get_url(path='@/_index.md') }}#talks">Talks</a>
+      <a href="{{ get_url(path='@/about.md') }}">About</a>
+      <a class="opt" href="{{ config.extra.github }}">GitHub</a>
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Switch color theme">auto</button>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+{% block content %}{% endblock content %}
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="{{ get_url(path='@/_index.md') }}">Heiko Seeberger</a>
+      <p>Founder and principal consultant of <a class="inline" href="{{ config.extra.oxidize }}">Oxidize Ltd</a>, Paphos, Cyprus. Author of <a class="inline" href="{{ config.extra.tellus }}">tellus</a>.</p>
+    </div>
+    <div>
+      <h4>Writing</h4>
+      <a href="{{ get_url(path='@/archives/_index.md') }}">All posts</a>
+      <a href="{{ get_taxonomy_url(kind='tags', name='tellus') }}">Posts on tellus</a>
+      <a href="{{ get_url(path='atom.xml', trailing_slash=false) }}">Atom feed</a>
+    </div>
+    <div>
+      <h4>Work</h4>
+      <a href="{{ config.extra.tellus }}">tellus</a>
+      <a href="{{ config.extra.oxidize }}">Oxidize</a>
+      <a href="{{ config.extra.github }}">GitHub</a>
+    </div>
+    <div>
+      <h4>Elsewhere</h4>
+      <a href="{{ config.extra.linkedin }}">LinkedIn</a>
+      <a href="{{ config.extra.wordpress }}">Old blog</a>
+    </div>
+  </div>
+</footer>
+<script src="{{ get_url(path='site.js', cachebust=true) }}" defer></script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<article class="wrap doc-single">
+  <h1>{{ page.title }}</h1>
+  {% if page.date %}
+  <div class="doc-meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time></div>
+  {% if page.taxonomies.tags %}
+  <ul class="tags">
+    {%- for tag in page.taxonomies.tags %}
+    <li><a href="{{ get_taxonomy_url(kind='tags', name=tag) }}">{{ tag }}</a></li>
+    {%- endfor %}
+  </ul>
+  {% endif %}
+  {% endif %}
+  <div class="prose-md">{{ page.content | safe }}</div>
+</article>
+{% endblock content %}

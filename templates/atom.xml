@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <author>
+    <name>{{ config.author }}</name>
+  </author>
+  <id>{{ config.base_url }}/</id>
+  <link href="{{ config.base_url }}/" rel="alternate"/>
+  <link href="{{ feed_url | safe }}" rel="self"/>
+  <title>{{ config.title }}</title>
+  <updated>{{ last_updated | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</updated>
+  {%- for page in pages %}
+  <entry>
+    <author>
+      <name>{{ config.author }}</name>
+    </author>
+    {%- for tag in page.taxonomies.tags | default(value=[]) %}
+    <category term="{{ tag }}" scheme="{{ get_taxonomy_url(kind='tags', name=tag) | safe }}"/>
+    {%- endfor %}
+    <content type="html"><![CDATA[{{ page.content | safe }}]]></content>
+    <id>{{ page.permalink | safe }}</id>
+    <link href="{{ page.permalink | safe }}"/>
+    <published>{{ page.date | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</published>
+    <title>{{ page.title }}</title>
+    <updated>{{ (page.updated or page.date) | date(format="%Y-%m-%dT%H:%M:%S%:z") }}</updated>
+  </entry>
+  {%- endfor %}
+</feed>

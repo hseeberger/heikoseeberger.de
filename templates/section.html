@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="wrap doc-single">
+  <h1>{{ section.title }}</h1>
+  {%- for page in section.pages %}
+  {%- if loop.first or page.year != section.pages[loop.index0 - 1].year %}
+  {%- if not loop.first %}</ol>{% endif %}
+  <h2 class="year" id="{{ page.year }}">{{ page.year }}</h2>
+  <ol class="articles">
+  {%- endif %}
+    <li><a href="{{ page.permalink }}"><time datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time><b>{{ page.title }}</b></a></li>
+  {%- if loop.last %}
+  </ol>
+  {%- endif %}
+  {%- endfor %}
+  <p class="note">Older posts, mostly about Scala and Akka, are on my <a href="{{ config.extra.wordpress }}">previous blog</a>.</p>
+</div>
+{% endblock content %}

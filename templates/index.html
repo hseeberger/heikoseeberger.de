@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set archives = get_section(path="archives/_index.md") %}
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">Rust <span aria-hidden="true">·</span> actors <span aria-hidden="true">·</span> event sourcing <span aria-hidden="true">·</span> Paphos, Cyprus</div>
+        <h1>Heiko <span class="ground">Seeberger.</span></h1>
+        <p class="lede">I build distributed systems, the last four years in Rust and fifteen before that in Scala and Akka. I wrote <a href="{{ config.extra.tellus }}">tellus</a>, an actor framework for Rust, and I run <a href="{{ config.extra.oxidize }}">Oxidize</a>, a consultancy for actor systems, supervision and event sourcing in Rust.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#writing">Read the blog</a>
+          <a class="btn btn-ghost" href="{{ config.extra.oxidize }}">Work with me</a>
+        </div>
+      </div>
+      <img class="portrait" src="{{ get_url(path='img/heiko-640.jpeg') }}" alt="Heiko Seeberger" width="320" height="320">
+    </div>
+  </section>
+
+  <section class="stratum" id="writing">
+    <div class="wrap">
+      <div class="depth">Writing</div>
+      <div class="split">
+        <div class="prose">
+          <h2>Recent posts.</h2>
+          <p>Most of them explain design decisions behind tellus or other Rust code I have written.</p>
+          <a class="more" href="{{ archives.permalink | safe }}">All posts →</a>
+        </div>
+        {{<post_list pages={archives.pages[:8]}/>}}
+      </div>
+    </div>
+  </section>
+
+  <section class="stratum alt" id="projects">
+    <div class="wrap">
+      <div class="depth">Projects</div>
+      <h2>What I have built.</h2>
+      <ul class="doc-list">
+        <li><a href="{{ config.extra.tellus }}"><b>tellus</b><span>An actor framework for Rust on Tokio: typed actors, supervision trees, death watch, event-sourced persistence and clustered remoting.</span></a></li>
+        <li><a href="https://github.com/hseeberger/eventsourced"><b>eventsourced</b><span>Event-sourced entities in Rust, with event logs and snapshot stores for NATS and Postgres.</span></a></li>
+        <li><a href="https://github.com/midnightntwrk/midnight-indexer"><b>Midnight Indexer</b><span>I led its development at Shielded Technologies.</span></a></li>
+      </ul>
+      <p class="note">More on <a href="{{ config.extra.github }}">GitHub</a>.</p>
+    </div>
+  </section>
+
+  <section class="stratum" id="talks">
+    <div class="wrap">
+      <div class="depth">Talks</div>
+      <h2>Recorded talks.</h2>
+      <ul class="doc-list">
+        <li><a href="https://www.youtube.com/watch?v=z40rgjZqrs4"><b>EventSourced: async_fn_in_trait in anger</b><span>Rust Nation UK, 2024</span></a></li>
+        <li><a href="https://www.youtube.com/live/sB4eWQ0Tuvo?t=465"><b>Distributed tracing in Rust</b><span>Rust Munich, 2024</span></a></li>
+      </ul>
+    </div>
+  </section>
+{% endblock content %}

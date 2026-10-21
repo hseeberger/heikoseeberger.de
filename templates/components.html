@@ -1,0 +1,7 @@
+{% component post_list(pages: array) %}
+<ol class="articles">
+  {%- for page in pages %}
+  <li><a href="{{ page.permalink }}"><time datetime="{{ page.date }}">{{ page.date | date(format="%B %-d, %Y") }}</time><b>{{ page.title }}</b></a></li>
+  {%- endfor %}
+</ol>
+{% endcomponent post_list %}

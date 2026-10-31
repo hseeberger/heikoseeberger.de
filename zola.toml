@@ -27,6 +27,7 @@ external_level = "warn"
 [extra]
 github    = "https://github.com/hseeberger"
 linkedin  = "https://www.linkedin.com/in/heikoseeberger"
+bluesky   = "https://bsky.app/profile/heikoseeberger.de"
 tellus    = "https://tellus.rs"
 oxidize   = "https://oxidize.cy"
 wordpress = "https://hseeberger.wordpress.com/"

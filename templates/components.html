@@ -5,3 +5,31 @@
   {%- endfor %}
 </ol>
 {% endcomponent post_list %}
+
+{% component cast(path: string, title: string, caption: string = "", speed: string = "1") %}
+<link rel="stylesheet" href="{{ get_url(path='vendor/asciinema-player-3.17.0/asciinema-player.css') }}">
+<div class="terminal">
+  <div class="term-bar"><i></i><i></i><i></i><span>{{ title }}</span></div>
+  <div class="term-player" data-cast="{{ get_url(path=path) }}" data-speed="{{ speed }}"></div>
+  {%- if caption %}
+  <p class="term-caption">{{ caption | markdown(inline=true) | safe }}</p>
+  {%- endif %}
+</div>
+<script src="{{ get_url(path='vendor/asciinema-player-3.17.0/asciinema-player.min.js') }}"></script>
+<script>
+  (() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    for (const element of document.querySelectorAll('.term-player:not([data-created])')) {
+      element.dataset.created = '';
+      AsciinemaPlayer.create(element.dataset.cast, element, {
+        autoPlay: !reducedMotion,
+        loop: true,
+        speed: Number(element.dataset.speed),
+        preload: true,
+        fit: 'width',
+        poster: 'npt:0:20',
+      });
+    }
+  })();
+</script>
+{% endcomponent cast %}

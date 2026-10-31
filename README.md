@@ -9,8 +9,9 @@ You need Zola 0.23 or later and [just](https://just.systems).
 
 ```shell
 git clone --recurse-submodules git@github.com:hseeberger/heikoseeberger.de.git
-just serve   # serve locally with live reload
-just all     # check links and build into public/
+just serve          # serve with live reload on all interfaces, port 1111
+just serve-drafts   # the same, drafts included
+just all            # check links and build into public/
 ```
 
 ## Posts
@@ -29,7 +30,7 @@ tags = ["rust", "tellus"]
 +++
 ```
 
-A post with `draft = true` is not built; `zola serve --drafts` shows it locally. Images go in
+A post with `draft = true` is not built; `just serve-drafts` shows it locally. Images go in
 `static/img/` and are referenced as `/img/...`. Template syntax in a post, for example `${{ ... }}`
 in a GitHub Actions example, has to be wrapped in `{% raw %}` and `{% endraw %}`.
 

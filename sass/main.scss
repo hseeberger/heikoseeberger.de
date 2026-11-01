@@ -39,3 +39,11 @@
 .year + .articles { margin-top: 12px; }
 .note { color: var(--ink-2); margin-top: 32px; }
 .brand { white-space: nowrap; }
+
+.terminal { margin: 28px 0; border-radius: 12px; overflow: hidden; background: var(--code-bg); color: var(--code-fg); border: 1px solid #2c332e; }
+.term-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; font-family: var(--f-mono); font-size: var(--t-xs); color: var(--code-dim); border-bottom: 1px solid #2c332e; }
+.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: #3a423c; }
+.term-bar span { margin-left: 8px; }
+.term-player, .term-player .ap-wrapper { background: var(--code-bg); }
+.term-caption { margin: 0; padding: 12px 16px 14px; border-top: 1px solid #2c332e; color: var(--code-dim); font-size: var(--t-sm); }
+.term-caption a { color: var(--code-fg); }

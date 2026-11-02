@@ -2,9 +2,13 @@
 title = "tellus 0.5: the same ActorRef, across machines"
 date = 2026-11-02
 path = "2026-11-02-tellus-cluster"
+description = "tellus actors can now form a cluster: the same ActorRef API across machines, with leaderless membership, failure detection and downing."
 
 [taxonomies]
 tags = ["rust","actors","tellus"]
+
+[extra]
+image = "brand/social-preview.png"
 +++
 
 Until recently, every actor in [tellus](https://tellus.rs) lived in the same process as the code talking to it. That is no longer necessary: an `ActorRef` can now point to an actor on another machine, and the code which tells it a message does not change. Clustering arrived with tellus 0.4.0 behind the `cluster` feature, and 0.5 builds on it. In this post we look at what a tellus cluster does, how it looks in code, and where its limits are. But first, let's watch one at work, five nodes under permanent chaos:

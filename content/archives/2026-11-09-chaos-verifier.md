@@ -3,9 +3,13 @@ title = "What a chaos verifier checks, and what it caught"
 date = 2026-11-09
 path = "2026-11-09-chaos-verifier"
 draft = true
+description = "What it takes to verify a cluster under permanent chaos: convergence checks in quiet windows, availability checks all the time, and the two bugs the verifier caught."
 
 [taxonomies]
 tags = ["rust","actors","tellus"]
+
+[extra]
+image = "brand/social-preview.png"
 +++
 
 The [tellus](https://tellus.rs) repository contains a [cluster demo](https://github.com/tellus-rs/tellus/blob/tellus-v0.5.3/tellus-cluster-demo/README.md): five nodes which run forever while a chaos agent keeps attacking them, and a verifier which holds the cluster to its promises. In one 45 minute run in October, the verifier reported zero violations. In the same run, 8 of the 5,352 requests it sent through the load balancer in front of the cluster failed. How can both be true? In this post I want to show what the verifier checks, why it checks some things only when the chaos pauses and others all the time, and what it caught. Both catches came before tellus 0.4.0, the first release with the cluster, so no released version is affected.

@@ -1,12 +1,19 @@
+{%- set meta_type = "website" -%}
+{%- set meta_description = config.description -%}
+{%- set meta_image = config.extra.image -%}
 {%- if page is defined -%}
+  {%- set meta_type = "article" -%}
   {%- set meta_title = page.title ~ ": Heiko Seeberger" -%}
-  {%- set meta_description = page.description | default(value=config.description) -%}
+  {%- set og_title = page.title -%}
+  {%- if page.description -%}{%- set meta_description = page.description -%}{%- endif -%}
+  {%- if page.extra.image -%}{%- set meta_image = page.extra.image -%}{%- endif -%}
 {%- elif section is defined and section.path != "/" -%}
   {%- set meta_title = section.title ~ ": Heiko Seeberger" -%}
-  {%- set meta_description = section.description | default(value=config.description) -%}
+  {%- set og_title = section.title -%}
+  {%- if section.description -%}{%- set meta_description = section.description -%}{%- endif -%}
 {%- else -%}
   {%- set meta_title = config.title -%}
-  {%- set meta_description = config.description -%}
+  {%- set og_title = config.title -%}
 {%- endif -%}
 <!doctype html>
 <html lang="en">
@@ -17,7 +24,14 @@
   <meta name="description" content="{{ meta_description }}">
   {% if current_url is defined %}
   <link rel="canonical" href="{{ current_url }}">
+  <meta property="og:url" content="{{ current_url }}">
   {% endif %}
+  <meta property="og:type" content="{{ meta_type }}">
+  <meta property="og:site_name" content="{{ config.title }}">
+  <meta property="og:title" content="{{ og_title }}">
+  <meta property="og:description" content="{{ meta_description }}">
+  <meta property="og:image" content="{{ get_url(path=meta_image) }}">
+  <meta name="twitter:card" content="{% if page is defined and page.extra.image %}summary_large_image{% else %}summary{% endif %}">
   <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path='atom.xml', trailing_slash=false) }}">
   <link rel="icon" href="{{ get_url(path='img/favicon.ico') }}">
   <link rel="preload" href="{{ get_url(path='fonts/bricolage-grotesque.woff2') }}" as="font" type="font/woff2" crossorigin>

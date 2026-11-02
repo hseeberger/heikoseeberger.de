@@ -2,7 +2,6 @@
 title = "tellus 0.5: the same ActorRef, across machines"
 date = 2026-11-02
 path = "2026-11-02-tellus-cluster"
-draft = true
 
 [taxonomies]
 tags = ["rust","actors","tellus"]

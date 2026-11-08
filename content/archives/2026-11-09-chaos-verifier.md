@@ -1,5 +1,5 @@
 +++
-title = "What a chaos verifier checks, and what it caught"
+title = "Breaking a Rust actor cluster on purpose, and what it taught us"
 date = 2026-11-09
 path = "2026-11-09-chaos-verifier"
 draft = true

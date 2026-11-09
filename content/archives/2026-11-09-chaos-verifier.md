@@ -2,7 +2,6 @@
 title = "Breaking a Rust actor cluster on purpose, and what it taught us"
 date = 2026-11-09
 path = "2026-11-09-chaos-verifier"
-draft = true
 description = "Five nodes, permanent chaos and a verifier: what it checks, and the two bugs it caught."
 
 [taxonomies]

@@ -91,4 +91,14 @@ So does zero violations mean the cluster is correct? Well, no. Our faults are ra
 
 If you want to try it yourself, `just start-cluster-demo-compose` starts the demo in a tellus checkout, and `just run-cluster-demo-tui` watches it. The explanation of [membership and downing](https://tellus.rs/docs/explanation/membership-and-downing/) describes what the cluster promises. What would you add to the verifier? I am looking forward to your comments.
 
+## Update, 2026-11-10
+
+[cosmir17](https://github.com/cosmir17) found the cause of the failed request, and it was a kill, not the terminal UI. Docker removes a killed container's network interface about 20 milliseconds before its DNS name. If Caddy dials the node in between, the dial hangs for Caddy's default dial timeout of three seconds. But our Caddyfile retries a failed request for two seconds only, so the request fails. Hence the retries cover a kill only when the dial fails fast: 11 of 50 kills aimed at that gap cost a request. With a dial timeout of half a second, none did. The terminal UI made no difference; with it running, all 16,700 requests succeeded. The fix, in [this pull request](https://github.com/tellus-rs/tellus/pull/275), is three lines in the Caddyfile:
+
+```txt
+transport http {
+    dial_timeout 500ms
+}
+```
+
 *My thoughts, written with AI assistance.*

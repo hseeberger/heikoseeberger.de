@@ -2,7 +2,6 @@
 title = "Rolling upgrades in tellus: old code cannot learn a new shape"
 date = 2026-11-24
 path = "2026-11-24-rolling-upgrades"
-draft = true
 description = "How tellus 0.6 lets old and new nodes of a cluster talk while a message type changes: a schema version on every payload, and new code which bridges both ways."
 
 [taxonomies]
